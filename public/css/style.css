@@ -124,3 +124,7 @@ h1 {
     text-align: center;
     color: #777;
 }
+.task-count {
+    font-weight: bold;
+    color: #333;
+}

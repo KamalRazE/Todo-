@@ -61,5 +61,4 @@ app.get("/", (req, res) => {
     res.render("list", { tasks: filteredTasks, filter });
 });
 
-
 app.listen(8000, () => console.log("Server running on port 8000"));
