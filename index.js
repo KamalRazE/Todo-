@@ -52,15 +52,7 @@ app.post("/clear-all", (req, res) => {
     res.redirect("/");
 });
 
-// Filter tasks by priority
-app.get("/", (req, res) => {
-    let filter = req.query.priority || "All";
-    let filteredTasks = (filter === "All") 
-        ? tasks 
-        : tasks.filter(t => t.priority === filter);
-    res.render("list", { tasks: filteredTasks, filter });
-});
-
+// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
