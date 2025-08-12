@@ -128,3 +128,36 @@ h1 {
     font-weight: bold;
     color: #333;
 }
+
+/* Mobile adjustments for 480px and below */
+@media (max-width: 480px) {
+    body {
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        height: auto; /* allow scrolling */
+        padding: 10px;
+    }
+
+    .todo-container {
+        width: 90vw; /* use viewport width instead of height */
+        height: auto; /* let content grow */
+        padding: 15px;
+    }
+
+    .add-form {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .add-btn,
+    .clear-btn {
+        width: 100%;
+    }
+
+    .task-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}
