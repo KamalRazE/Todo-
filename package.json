@@ -2,25 +2,23 @@
   "name": "todo",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "",
+  "author": "kraze",
+  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/KamalRazE/Todo-.git"
   },
-  "author": "kraze",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/KamalRazE/Todo-/issues"
   },
   "homepage": "https://github.com/KamalRazE/Todo-#readme",
-  "description": "",
   "dependencies": {
     "ejs": "^3.1.10",
     "express": "^5.1.0"
-  }
+  },
   "scripts": {
-  "start": "index.js"
-}
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }
