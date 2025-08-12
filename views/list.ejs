@@ -1,28 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo List</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <div class="box">
-        <h1>Todo List</h1>
-    </div>
-    <div class="box">
-        <% for(var i=0; i< ejes.length ; i++){ %>
-        <div class="item">
-            <input type="checkbox">
-            <p><%= ejes[i] %></p>
-        </div>    
-            
-        <% } %>
-        
-        <form action="/" method="POST">
-            <input type="text" name="ele1" placeholder="Enter the task">
-            <button type="submit">+</button>
+    <div class="todo-container">
+        <h1>Todo List App</h1>
+
+        <!-- Filter Form -->
+        <form class="filter-form" method="get" action="/">
+            <select name="priority" onchange="this.form.submit()">
+                <option value="All" <%= filter === 'All' ? 'selected' : '' %>>All</option>
+                <option value="High" <%= filter === 'High' ? 'selected' : '' %>>High</option>
+                <option value="Medium" <%= filter === 'Medium' ? 'selected' : '' %>>Medium</option>
+                <option value="Low" <%= filter === 'Low' ? 'selected' : '' %>>Low</option>
+            </select>
         </form>
+
+        <!-- Add Task -->
+        <form class="add-form" action="/add" method="post">
+            <input type="text" name="text" placeholder="Add your new todo">
+            <select name="priority">
+                <option value="High">High</option>
+                <option value="Medium" selected>Medium</option>
+                <option value="Low">Low</option>
+            </select>
+            <button type="submit" class="add-btn">+</button>
+        </form>
+
+        <!-- Task List -->
+        <div class="task-list">
+            <% if (tasks.length === 0) { %>
+                <p class="empty">No tasks found</p>
+            <% } else { %>
+                <% tasks.forEach(task => { %>
+                    <div class="task-item">
+                        <span class="<%= task.completed ? 'done' : '' %>"><%= task.text %></span>
+                        <span class="badge <%= task.priority.toLowerCase() %>"><%= task.priority %></span>
+                        <form action="/delete/<%= task.id %>" method="post">
+                            <button type="submit" class="delete-btn">🗑</button>
+                        </form>
+                    </div>
+                <% }) %>
+            <% } %>
+        </div>
+
+        <!-- Footer -->
+        <% if (tasks.length > 0) { %>
+            <div class="footer">
+                <span>You have <%= tasks.length %> pending tasks</span>
+                <form action="/clear-all" method="post">
+                    <button type="submit" class="clear-btn">Clear All</button>
+                </form>
+            </div>
+        <% } %>
     </div>
 </body>
 </html>
