@@ -36,9 +36,22 @@
             <% } else { %>
                 <% tasks.forEach(task => { %>
                     <div class="task-item">
-                        <span class="<%= task.completed ? 'done' : '' %>"><%= task.text %></span>
+                        <!-- Toggle Complete -->
+                        <form action="/toggle/<%= task.id %>" method="post" style="display:inline;">
+                            <button type="submit" class="toggle-btn"><%= task.completed ? "✅" : "⭕" %></button>
+                        </form>
+
+                        <!-- Editable Text -->
+                        <form action="/edit/<%= task.id %>?_method=PUT" method="post" style="display:inline;">
+                            <input type="text" name="text" value="<%= task.text %>" class="<%= task.completed ? 'done' : '' %>">
+                            <button type="submit" class="edit-btn">✏</button>
+                        </form>
+
+                        <!-- Priority Badge -->
                         <span class="badge <%= task.priority.toLowerCase() %>"><%= task.priority %></span>
-                        <form action="/delete/<%= task.id %>" method="post">
+
+                        <!-- Delete Task -->
+                        <form action="/delete/<%= task.id %>?_method=DELETE" method="post" style="display:inline;">
                             <button type="submit" class="delete-btn">🗑</button>
                         </form>
                     </div>
