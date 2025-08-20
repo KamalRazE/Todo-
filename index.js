@@ -38,14 +38,14 @@ app.post("/toggle/:id", (req, res) => {
     res.redirect("/");
 });
 
-// ✅ Edit task with PUT
+// Edit task with PUT
 app.put("/edit/:id", (req, res) => {
     let task = tasks.find(t => t.id == req.params.id);
     if (task) task.text = req.body.text;
     res.redirect("/");
 });
 
-// ✅ Delete task with DELETE
+// Delete task with DELETE
 app.delete("/delete/:id", (req, res) => {
     tasks = tasks.filter(t => t.id != req.params.id);
     res.redirect("/");
