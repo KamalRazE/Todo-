@@ -13,8 +13,7 @@ body {
     padding: 20px;  
     border-radius: 10px;
     box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
-    width: 600px;
-    /* height 90vh; */
+    width: 340px;
 }
 
 h1 {
@@ -147,37 +146,4 @@ h1 {
 .task-count {
     font-weight: bold;
     color: #333;
-}
-
-/* Mobile adjustments for 480px and below */
-@media (max-width: 480px) {
-    body {
-        flex-direction: column;
-        align-items: stretch;
-        justify-content: flex-start;
-        height: auto; /* allow scrolling */
-        padding: 10px;
-    }
-
-    .todo-container {
-        width: 90vw; /* use viewport width instead of height */
-        height: auto; /* let content grow */
-        padding: 15px;
-    }
-
-    .add-form {
-        flex-direction: column;
-        gap: 6px;
-    }
-
-    .add-btn,
-    .clear-btn {
-        width: 100%;
-    }
-
-    .task-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 5px;
-    }
 }
