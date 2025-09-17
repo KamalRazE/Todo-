@@ -13,7 +13,8 @@ body {
     padding: 20px;  
     border-radius: 10px;
     box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
-    width: 340px;
+    width: 600px;
+    /* height 90vh; */
 }
 
 h1 {
@@ -65,16 +66,35 @@ h1 {
 .task-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
 .task-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background: #f5f5f5;
-    padding: 10px;
-    border-radius: 5px;
+    justify-content: space-between;
+    background: #f9f9ff;
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.task-item:hover {
+    transform: translateY(-2px);
+}
+
+/* Editable text */
+.task-item input[type="text"] {
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    color: #333;
+    width: 250px;
+}
+.task-item input[type="text"].done {
+    text-decoration: line-through;
+    color: #888;
 }
 
 .task-item .done {
@@ -90,7 +110,7 @@ h1 {
     text-transform: capitalize;
 }
 
-.badge.high { background: #ffcccc; color: #800; }
+.badge.important { background: #ffcccc; color: #800; }
 .badge.medium { background: #fff0b3; color: #775500; }
 .badge.low { background: #d9f7e8; color: #075a3a; }
 
@@ -127,4 +147,37 @@ h1 {
 .task-count {
     font-weight: bold;
     color: #333;
+}
+
+/* Mobile adjustments for 480px and below */
+@media (max-width: 480px) {
+    body {
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        height: auto; /* allow scrolling */
+        padding: 10px;
+    }
+
+    .todo-container {
+        width: 90vw; /* use viewport width instead of height */
+        height: auto; /* let content grow */
+        padding: 15px;
+    }
+
+    .add-form {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .add-btn,
+    .clear-btn {
+        width: 100%;
+    }
+
+    .task-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
 }

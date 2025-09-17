@@ -7,47 +7,56 @@
 <body>
     <div class="todo-container">
         <h1>Todo List App</h1>
+    <!-- Filter the priority -->
+     <form class="filter-form" method="get" action="/">
+        <select name="priority" id="" onchange="this.form.submit()">
+            <option value="All" <%= filter === 'All' ? 'selected' : '' %>>All</option>
+            <option value="Important" <%= filter === 'Important' ?  'selected' : '' %>>Important</option>
+            <option value="Medium" <%= filter === 'Medium' ? 'selected' : '' %>>Medium</option>
+            <option value="Low" <%= filter === 'Low' ? 'selected' : '' %>>Low</option>
+        </select>
+     </form>
 
-        <!-- Filter Form -->
-        <form class="filter-form" method="get" action="/">
-            <select name="priority" onchange="this.form.submit()">
-                <option value="All" <%= filter === 'All' ? 'selected' : '' %>>All</option>
-                <option value="High" <%= filter === 'High' ? 'selected' : '' %>>High</option>
-                <option value="Medium" <%= filter === 'Medium' ? 'selected' : '' %>>Medium</option>
-                <option value="Low" <%= filter === 'Low' ? 'selected' : '' %>>Low</option>
-            </select>
-        </form>
-
-        <!-- Add Task -->
+        <!--Adding tasks -->
         <form class="add-form" action="/add" method="post">
             <input type="text" name="text" placeholder="Add your new todo">
-            <select name="priority">
-                <option value="High">High</option>
-                <option value="Medium" selected>Medium</option>
+            <select name="priority" >
+                <option value="Important">Important</option>
+                <option value="Medium">Medium</option>
                 <option value="Low">Low</option>
             </select>
             <button type="submit" class="add-btn">+</button>
         </form>
 
-        <!-- Task List -->
         <div class="task-list">
-            <% if (tasks.length === 0) { %>
+            <% if (tasks && tasks.length === 0) { %> 
                 <p class="empty">No tasks found</p>
-            <% } else { %>
+            <% } else if (tasks) { %>
                 <% tasks.forEach(task => { %>
                     <div class="task-item">
-                        <span class="<%= task.completed ? 'done' : '' %>"><%= task.text %></span>
+                        <!-- Toggle complete -->
+                        <form action="/toggle/<%= task._id %>" method="post" style="display:inline;">
+                            <button type="submit" class="toggle-btn"><%= task.completed ? "✓" : "Not Done" %></button>
+                        </form>
+                        
+                        <!-- Editable text -->
+
+                        <form action="/edit/<%= task._id %>?_method=PUT" method="POST" style="display:inlien;">
+                            <input type="text" name="text" value="<%= task.name %>" class="<%= task.completed ? 'done' : '' %>">
+                            <button type="submit" class="edit-btn">✏️</button>
+                        </form>
+
                         <span class="badge <%= task.priority.toLowerCase() %>"><%= task.priority %></span>
-                        <form action="/delete/<%= task.id %>" method="post">
-                            <button type="submit" class="delete-btn">🗑</button>
+
+                        <form action="/delete/<%= task._id %>?_method=DELETE" method="post" style="display:inline;">
+                            <button type="submit" class="delete-btn">🗑️</button>
                         </form>
                     </div>
                 <% }) %>
             <% } %>
         </div>
 
-        <!-- Footer -->
-        <% if (tasks.length > 0) { %>
+        <% if (tasks && tasks.length > 0) { %>
             <div class="footer">
                 <span>You have <%= tasks.length %> pending tasks</span>
                 <form action="/clear-all" method="post">
