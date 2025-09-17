@@ -19,4 +19,7 @@
     "method-override": "^3.0.0",
     "mongoose": "^8.18.1"
   }
+  "engines": {
+  "node": "20.x"
+}
 }
