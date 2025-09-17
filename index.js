@@ -7,8 +7,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(methodOverried('_method'));
 
+// const mongoose = require("mongoose");
+// mongoose.connect("mongodb+srv://Kamal:nZ8zPSnyXjuwWQSN@cluster0.zrxjueu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://Kamal:nZ8zPSnyXjuwWQSN@cluster0.zrxjueu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  ssl: true
+})
+.then(() => console.log("Connected to MongoDB Atlas"))
+.catch(err => console.error("MongoDB connection error:", err));
 
 //Schema 
 // const trySchema = new mongoose.Schema({
