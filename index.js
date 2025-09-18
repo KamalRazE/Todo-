@@ -10,8 +10,9 @@ app.use(methodOverried('_method'));
 // const mongoose = require("mongoose");
 // mongoose.connect("mongodb+srv://Kamal:nZ8zPSnyXjuwWQSN@cluster0.zrxjueu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
 
-const mongoose = require("mongoose");
+
 require("dotenv").config(); // Load environment variables from .env file
+const mongoose = require("mongoose");
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
@@ -158,5 +159,3 @@ app.delete("/delete/:id", async (req, res) => {
 app.listen(3000, function(){
     console.log("Server started at port 3000");
 });
-
-
