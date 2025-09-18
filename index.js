@@ -11,6 +11,7 @@ app.use(methodOverried('_method'));
 // mongoose.connect("mongodb+srv://Kamal:nZ8zPSnyXjuwWQSN@cluster0.zrxjueu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
 
 const mongoose = require("mongoose");
+require("dotenv").config(); // Load environment variables from .env file
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,

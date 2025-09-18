@@ -2,3 +2,9 @@
 /node_modules
 
 # Logs
+
+# Environment variables
+.env
+
+# Local-specific files
+.DS_Store
